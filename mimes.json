@@ -1,0 +1,78 @@
+{
+    "odt": {
+        "mime": "application/vnd.oasis.opendocument.text",
+        "binary": true
+    },
+    "docx": {
+        "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "binary": true
+    },
+    "doc": {
+        "mime": "application/msword",
+        "binary": true
+    },
+    "xls": {
+        "mime": "application/vnd.ms-excel",
+        "binary": true
+    },
+    "xlsx": {
+        "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "binary": true
+    },
+    "ppt": {
+        "mime": "application/vnd.ms-powerpoint",
+        "binary": true
+    },
+    "pptx": {
+        "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "binary": true
+    },
+    "epub": {
+        "mime": "application/epub+zip",
+        "binary": true
+    },
+    "csv": {
+        "mime": "text/csv",
+        "binary": false
+    },
+    "ods": {
+        "mime": "application/vnd.oasis.opendocument.spreadsheet",
+        "binary": true
+    },
+    "odp": {
+        "mime": "application/vnd.oasis.opendocument.presentation",
+        "binary": true
+    },
+    "viz": {
+        "mime": "text/vnd.graphviz",
+        "binary": false
+    },
+    "py": {
+        "mime": "text/x-python",
+        "binary": false
+    },
+    "coffee": {
+        "mime": "text/vnd.coffeescript",
+        "binary": false
+    },
+    "apj": {
+        "mime": "text/antos-project",
+        "binary": false
+    },
+    "wasm": {
+        "mime": "application/wasm",
+        "binary": true
+    },
+    "glb": {
+        "mime": "model/gltf-binary",
+        "binary": true
+    },
+    "ts":{
+        "mime": "text/x.typescript",
+        "binary": false
+    },
+    "map":{
+        "mime": "application/json",
+        "binary": false
+    }
+}

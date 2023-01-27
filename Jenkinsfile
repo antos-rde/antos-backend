@@ -25,7 +25,7 @@ pipeline{
           [ -d build ] && rm -rf build
           mkdir -p build/opt/www/htdocs/os
           export BUILDDIR="$WORKSPACE/build/opt/www/htdocs/os"
-          cp router.lua "$BUILDDIR"
+          cp router.lua mimes.json "$BUILDDIR"
           cp -rf controllers "$BUILDDIR"
           cp -rf libs "$BUILDDIR"
         '''
