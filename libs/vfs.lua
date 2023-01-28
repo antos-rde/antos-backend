@@ -3,19 +3,24 @@ local vfs = {}
 vfs.ospath = function(path)
     local user = SESSION.user
     local prefix = string.match(path, "%a+:/")
+    local os_path = nil
     if (prefix ~= nil) then
         local suffix = string.gsub(path, prefix, "")
         if prefix == "home:/" then
-            return string.format(VFS_HOME, user) .. '/' .. suffix
+            os_path = string.format(VFS_HOME, user) .. '/' .. suffix
         elseif prefix == "desktop:/" then
-            return string.format(VFS_HOME, user) .. "/.desktop/" .. suffix
+            os_path = string.format(VFS_HOME, user) .. "/.desktop/" .. suffix
         elseif prefix == "shared:/" then
-            return require("shared").ospath(ulib.trim(suffix, "/"))
+            os_path = require("shared").ospath(ulib.trim(suffix, "/"))
         elseif prefix == "os:/" then
-            return WWW_ROOT .. "/" .. suffix
+            os_path = WWW_ROOT .. "/" .. suffix
         else
             return nil
         end
+        while os_path:match("//") do
+            os_path = os_path:gsub("//","/")
+        end
+        return os_path
     else
         return nil;
     end
