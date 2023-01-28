@@ -16,6 +16,7 @@ packages._cache = function(y)
         f = io.open(file_path, "w")
     end
     if f then
+		LOG_DEBUG("Cache package files into: %s", file_path)
         local files = vfs.readDir(y)
         for k, v in pairs(files) do
             if v.type == "dir" then
@@ -58,6 +59,7 @@ packages.list = function(paths)
 			osp = f2
 		end
         if ulib.exists(osp) then
+			LOG_DEBUG("Use package cache files at: %s", osp)
             if first == false then
                 std.t(",")
             else
