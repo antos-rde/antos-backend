@@ -186,8 +186,9 @@ end
 function VFSController:upload(...)
     auth_or_die("User unauthorized. Please login")
     local vfs = require("vfs")
-    if REQUEST and REQUEST.path then
-        local r, m = require("vfs").upload(REQUEST.path)
+    --LOG_DEBUG("UPLOAD COMMAND: %s", JSON.encode(REQUEST))
+    if REQUEST and REQUEST.multipart and REQUEST.multipart.path then
+        local r, m = require("vfs").upload(REQUEST.multipart.path)
         if r then
             result(r)
         else

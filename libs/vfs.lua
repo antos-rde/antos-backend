@@ -149,11 +149,13 @@ vfs.upload = function(path)
     if (r) then
         local uid = ulib.uid(SESSION.user)
         local index = 0
-        while (REQUEST["upload-" .. index .. ".tmp"] ~= nil) do
-            local file = m .. "/" .. REQUEST["upload-" .. index .. ".file"]
-            local ret = ulib.move(REQUEST["upload-" .. index .. ".tmp"], file)
+        while (REQUEST.multipart["upload-" .. index] ~= nil) do
+            local file_data = JSON.decodeString(REQUEST.multipart["upload-" .. index])
+
+            local file = m .. "/" .. file_data.file
+            local ret = ulib.move(file_data.tmp, file)
             if not ret then
-                ret = ulib.send_file(REQUEST["upload-" .. index .. ".tmp"], file)
+                ret = ulib.send_file(file_data.tmp, file)
             end
             if not ret then
                 return false, "Unable to copy file"
