@@ -74,5 +74,9 @@
     "map":{
         "mime": "application/json",
         "binary": false
+    },
+    "db":{
+        "mime": "application/vnd.sqlite3",
+        "binary": true
     }
 }
