@@ -135,10 +135,11 @@ function SystemController:apigateway(...)
             if ulib.exists(home.."/.local/bin") then
                 paths = paths..home.."/.local/bin:"
             end
-            local envar = ulib.getenv("PATH")
-            if envar then
-                paths = paths..envar
-            end
+            --local envar = ulib.getenv("PATH")
+            --if envar then
+            --    paths = paths..envar
+            --end
+            paths = paths.."/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin"
             ulib.setenv("PATH", paths,1)
         end
         -- run the code as user
