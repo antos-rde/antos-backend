@@ -1,5 +1,5 @@
 require("silk.core.sqlite")
-local TUNNEL_KEYCHAIN = __api__.tmpdir.."/channels/antunnel_keychain"
+local TUNNEL_KEYCHAIN = __api__.tmpdir.."/antunnel_keychain"
 function fail(msg)
     std.custom_header("Connection", "close")
     std.json()
