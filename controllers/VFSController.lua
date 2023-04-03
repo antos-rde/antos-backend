@@ -151,14 +151,14 @@ function VFSController:publish(...)
         end
         local cond = nil
         if rq.publish then
-            cond = {exp = {["="] = {path = p}}}
+            cond = {where = {path = p}}
             local data = db:find(cond)
             if data == nil or data[0] == nil then
                 -- insert entry
                 db:insert(entry)
             end
         else
-            cond = {["="] = {sid = rq.path}}
+            cond = { where = {sid = rq.path}}
             db:delete(cond)
         end
         db:close()

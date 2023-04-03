@@ -19,7 +19,7 @@ shared.get =  function(sharedid)
                     i = i+1
                 end
             else
-                local cond = { ["="] = { sid = v.sid } }
+                local cond = { where = { sid = v.sid } }
                 db:delete(cond) 
             end
         end
@@ -36,7 +36,7 @@ end
 shared.ospath = function(sharedid)
     local db = require("dbmodel").get("sysdb", "shared", nil)
     if db == nil then die("Cannot get shared database") end
-    local cond = { exp = { ["="] = { sid = sharedid } } }
+    local cond = { where = { sid = sharedid } }
     local data = db:find(cond) 
     db:close()
     if data == nil or data[1] == nil then die("Cannot get shared file with: "..sharedid) end

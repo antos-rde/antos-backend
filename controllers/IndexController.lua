@@ -23,7 +23,6 @@ function IndexController:doc(...)
         version = "2.0.0-a",
         documents = {
             vfs = HTTP_ROOT.."/VFS",
-            vdb = HTTP_ROOT.."/VDB",
             user = HTTP_ROOT.."/user",
             system = HTTP_ROOT.."/system"
         }

@@ -182,7 +182,7 @@ vfs.checkperm = function(path, right)
 		if right == "write" then
 			return false, "Shared file is readonly"
 		else
-			return true
+			return true, vfs.ospath(path)
 		end
 	end
     local osfile = vfs.ospath(path)

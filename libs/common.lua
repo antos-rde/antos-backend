@@ -52,10 +52,8 @@ function is_auth()
         return false
     end
     local cond = {
-        exp = {
-            ["="] = {
-                sessionid = sessionid
-            }
+        where = {
+            sessionid = sessionid
         }
     }
     local data = db:find(cond)

@@ -47,7 +47,7 @@ function UserController:login(...)
             local cookie = {sessionid=enc.sha1(request.username..request.password..salt)} -- iotos_user = request.username
             local db = sysdb();
             if db == nil then return fail("Cannot setup session") end
-            local cond = {exp= {["="] = { sessionid = cookie.sessionid }}}
+            local cond = {where = { sessionid = cookie.sessionid }}
             local data = db:find(cond)
             --print(data)
             if data == nil or data[1] == nil then
@@ -89,7 +89,7 @@ function UserController:logout(...)
         local cookie = {sessionid='0'}
         local db = sysdb()
         if db ~= nil then
-            local cond = {["="] = { sessionid = SESSION.sessionid }}
+            local cond = {where = { sessionid = SESSION.sessionid }}
             db:delete(cond)
             db:close()
         end
