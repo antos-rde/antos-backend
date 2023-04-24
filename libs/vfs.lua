@@ -57,7 +57,7 @@ vfs.fileinfo = function(vfspath)
         end
         r.path = vfspath
         r.name = utils.basename(vfspath)
-        r.mime = std.mimeOf(r.name)
+        r.mime = std.mimeOf(ospath)
         return true, r
     else
         return false, "Resource not found"
@@ -240,7 +240,7 @@ vfs.readDir = function(vfspath)
     end
     -- add extra mime type 
     for k, v in pairs(r) do
-        v.mime = std.mimeOf(v.filename)
+        v.mime = std.mimeOf(ospath.."/"..v.filename)
     end
     return r
 end
