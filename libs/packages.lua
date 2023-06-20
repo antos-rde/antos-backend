@@ -60,9 +60,8 @@ packages.list = function(paths)
 			osp = f2
 		end
         if ulib.exists(osp) then
-			LOG_DEBUG("Use package cache files at: %s", osp)
+            LOG_DEBUG("Use package cache files at: %s", osp)
             local data = JSON.decodeFile(osp)
-            LOG_ERROR("ERROR: %s", data)
             if data then
                 for k1,v1 in pairs(data) do
                     ret.result[k1] = v1
