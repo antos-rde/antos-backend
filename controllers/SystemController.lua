@@ -53,7 +53,7 @@ function SystemController:settings(...)
     if user then
         local ospath = require("vfs").ospath("home:///", user)
         if REQUEST and REQUEST.json then
-            local file_path = ospath .. "/" .. ".settings.json"
+            local file_path = ospath .. "/.antos/settings/" .. "settings.json"
             local f = io.open(file_path, "w")
             if f then
                 f:write(REQUEST.json)

@@ -26,14 +26,13 @@ packages._cache = function(y)
                     local name = utils.basename(v.path)
                     local mt = JSON.decodeString(f1:read("*all"))
                     mt.path = v.path
-                    meta[i] = '"' .. name .. '":' .. JSON.encode(mt)
-                    i = i + 1
+                    meta[name] = mt
                     f1:close()
                     has_cache = true;
                 end
             end
         end
-        f:write(table.concat(meta, ","))
+        f:write(JSON.encode(meta))
         f:close()
         if has_cache == false then
             ulib.delete(file_path);
@@ -44,8 +43,10 @@ end
 -- we will change this later
 packages.list = function(paths)
     std.json()
-    std.t("{\"result\" : { ")
-    local first = true
+    local ret = {
+        result = {},
+        error = false
+    }
     for k, v in pairs(paths) do
 		local p = vfs.ospath(v)
 		local f1 = p.."/packages.json"
@@ -60,15 +61,16 @@ packages.list = function(paths)
 		end
         if ulib.exists(osp) then
 			LOG_DEBUG("Use package cache files at: %s", osp)
-            if first == false then
-                std.t(",")
-            else
-                first = false
+            local data = JSON.decodeFile(osp)
+            LOG_ERROR("ERROR: %s", data)
+            if data then
+                for k1,v1 in pairs(data) do
+                    ret.result[k1] = v1
+                end
             end
-            std.f(osp)
         end
     end
-    std.t("}, \"error\":false}")
+    std.t(JSON.encode(ret))
 end
 
 -- generate the packages caches

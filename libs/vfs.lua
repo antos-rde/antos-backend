@@ -9,7 +9,7 @@ vfs.ospath = function(path)
         if prefix == "home:/" then
             os_path = string.format(VFS_HOME, user) .. '/' .. suffix
         elseif prefix == "desktop:/" then
-            os_path = string.format(VFS_HOME, user) .. "/.desktop/" .. suffix
+            os_path = string.format(VFS_HOME, user) .. "/.antos/desktop/" .. suffix
         elseif prefix == "shared:/" then
             os_path = require("shared").ospath(ulib.trim(suffix, "/"))
         elseif prefix == "os:/" then
