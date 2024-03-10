@@ -2,14 +2,21 @@ local vfs = {}
 
 vfs.ospath = function(path)
     local user = SESSION.user
+    local uid = ulib.uid(SESSION.user)
     local prefix = string.match(path, "%a+:/")
+    local home = ulib.home_dir(uid.id)
+    if not home then
+        home = string.format("%s/%s",VFS_HOME, user)
+    else
+        LOG_DEBUG("User home is %s", home)
+    end
     local os_path = nil
     if (prefix ~= nil) then
         local suffix = string.gsub(path, prefix, "")
         if prefix == "home:/" then
-            os_path = string.format(VFS_HOME, user) .. '/' .. suffix
+            os_path =  home.. '/' .. suffix
         elseif prefix == "desktop:/" then
-            os_path = string.format(VFS_HOME, user) .. "/.antos/desktop/" .. suffix
+            os_path = home .. "/.antos/desktop/" .. suffix
         elseif prefix == "shared:/" then
             os_path = require("shared").ospath(ulib.trim(suffix, "/"))
         elseif prefix == "os:/" then

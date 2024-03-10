@@ -15,7 +15,13 @@ package.path = package.path..";"..WWW_ROOT .. '/libs/?.lua'
 require("common")
 
 DIR_SEP = "/"
-VFS_HOME = "/home/%s"
+VFS_HOME = os.getenv("HOME_ROOT")
+if not VFS_HOME then
+    VFS_HOME="/home"
+end
+
+LOG_DEBUG("VFS_HOME=%s", VFS_HOME)
+
 -- class path: path.to.class
 CONTROLLER_ROOT = "os.controllers"
 MODEL_ROOT = "os.models"
