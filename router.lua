@@ -1,4 +1,5 @@
-
+-- API version
+API_VERSION = "2.1.0"
 -- the rewrite rule for the framework
 -- should be something like this
 -- ^\/apps\/+(.*)$ = /apps/router.lua?r=<1>&<query>

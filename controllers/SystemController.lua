@@ -17,7 +17,8 @@ function SystemController:index(...)
             ["/packages"] = "Handle all operation relate to package: list, install, cache, uninstall",
             ["/settings"] = "Save user setting",
             ["/application"] = "Call a specific server side application api",
-            ["/apigateway"] = "Gateway for executing custom server side code"
+            ["/apigateway"] = "Gateway for executing custom server side code",
+            ["/version"] = "All component versions"
         }
     }
     result(api)
@@ -247,4 +248,19 @@ function SystemController:apigateway(...)
     else
         cout('{"error":"User unauthorized. Please login"}')
     end
+end
+
+function SystemController:version(...)
+    auth_or_die("User unauthorized. Please login")
+    local versions = {}
+    local version_file = string.format('%s/libs/versions.json', WWW_ROOT)
+    if ulib.exists(version_file) then
+        versions =  JSON.decodeFile(version_file)
+    end
+    versions["REST"] = { version = API_VERSION, ref = "unknown" }
+    if API_REF then
+        versions["REST"]["ref"] = API_REF
+    end
+    result(versions)
+    return false
 end

@@ -20,7 +20,7 @@ function IndexController:doc(...)
         author = "Xuan Sang LE",
         email = "xsang.le@gmail.com",
         api_name = "AntOS API",
-        version = "2.0.0-a",
+        version = API_VERSION,
         documents = {
             vfs = HTTP_ROOT.."/VFS",
             user = HTTP_ROOT.."/user",
